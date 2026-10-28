@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Form Biodata Mahasantri PeTIK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Libre+Baskerville:wght@400;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141b26; --teal:#1d6764; --wine:#5e2538; --navy:#26446a; --gold:#d6a23c;
+  --koran:#e2dac4; --koran-2:#d3c9ae; --koran-3:#c5baa0; --garis:#6e6246; --teks:#241e14; --merah:#a3362b;
+  --judul:"UnifrakturCook","Old English Text MT",Georgia,serif;
+  --isi:"Old Standard TT","Century Schoolbook",Georgia,"Times New Roman",serif;
+  --mesin:"Special Elite","Courier New",Courier,monospace;
+  --label:"Libre Baskerville",Baskerville,Georgia,serif;
+  --tulis:"Caveat","Segoe Script","Bradley Hand",cursive;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--koran:#d8cfb6;--koran-2:#c9bfa3}}
+:root[data-theme="dark"]{--koran:#d8cfb6;--koran-2:#c9bfa3}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:grid; place-items:center; padding:76px 16px 40px;
+  font:17px/1.55 var(--isi); color:var(--teks); background-color:var(--ink);
+  background-image:linear-gradient(125deg,var(--ink),var(--teal),var(--wine),var(--navy),var(--gold),var(--teal),var(--ink));
+  background-size:400% 400%; animation:gradasi 28s ease-in-out infinite;
+}
+@keyframes gradasi{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.2; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* tumpukan koran yang terbit satu per satu */
+.tumpuk{position:relative; isolation:isolate; width:min(980px,100%)}
+.tumpuk::before,.tumpuk::after,.koran{
+  animation:terbit 1.1s cubic-bezier(.2,.8,.25,1) both;
+}
+.tumpuk::before,.tumpuk::after{
+  content:""; position:absolute; inset:0; z-index:-1; border-radius:3px;
+  background:linear-gradient(var(--koran-2),var(--koran-3)); box-shadow:0 14px 30px rgba(0,0,0,.35);
+}
+.tumpuk::before{--r:-2.2deg; transform:rotate(var(--r)); animation-delay:0s}
+.tumpuk::after{--r:1.8deg; transform:rotate(var(--r)); animation-delay:.25s}
+.koran{
+  --r:0deg; animation-delay:.55s; position:relative; padding:26px 30px 30px; border-radius:3px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.07),transparent 3%,transparent 97%,rgba(0,0,0,.07)),
+    linear-gradient(180deg,var(--koran),var(--koran-2));
+  box-shadow:0 1px 0 #fff8 inset,0 2px 0 var(--koran-3),0 4px 0 #b3a88d,0 6px 0 #a1977c,0 26px 50px rgba(0,0,0,.5);
+}
+@keyframes terbit{
+  0%{opacity:0; transform:translateY(90px) rotate(calc(var(--r) * 4 + 3deg)) scale(.9)}
+  65%{opacity:1; transform:translateY(-8px) rotate(var(--r)) scale(1.012)}
+  100%{opacity:1; transform:translateY(0) rotate(var(--r)) scale(1)}
+}
+/* kepala koran */
+.kepala{text-align:center; border-bottom:4px double var(--teks); padding-bottom:12px}
+.kepala h1{
+  margin:0; font:700 clamp(2.2rem,7vw,4.4rem)/1 var(--judul); color:#2a2418; letter-spacing:.01em;
+  text-shadow:1px 1px 0 rgba(255,255,255,.7),-1px -1px 0 rgba(0,0,0,.28),2px 3px 4px rgba(0,0,0,.18);
+}
+.baris{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:10px; padding:6px 0;
+  border-top:1px solid var(--teks); border-bottom:1px solid var(--teks); font:.86rem/1.3 var(--mesin);
+}
+.berita{display:grid; grid-template-columns:1.7fr 1fr; gap:30px; margin-top:22px}
+.berita h2{
+  margin:0 0 4px; font:700 clamp(1.5rem,3vw,2rem)/1.1 var(--isi); text-shadow:1px 1px 0 rgba(255,255,255,.6);
+}
+.lead{margin:0 0 20px; font-style:italic; color:#51472f; padding-bottom:12px; border-bottom:1px solid var(--garis)}
+.kolom{display:grid; grid-template-columns:1fr 1fr; gap:16px 18px}
+.penuh{grid-column:1/-1}
+label,legend{display:block; margin:0 0 6px; padding:0; font:700 .88rem/1.2 var(--label); color:var(--ink)}
+input[type=text],input[type=email],select,textarea{
+  width:100%; padding:7px 12px; font:600 1.5rem/1.3 var(--tulis); color:#1c2a4a;
+  background:rgba(255,255,255,.38); border:1px solid var(--garis); border-radius:2px;
+  box-shadow:inset 2px 2px 4px rgba(0,0,0,.2),1px 1px 0 rgba(255,255,255,.75);
+  outline:none; transition:border-color .2s,background-color .2s,box-shadow .2s;
+}
+textarea{min-height:120px; resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--teal); background:rgba(255,255,255,.7); box-shadow:inset 2px 2px 4px rgba(0,0,0,.15),0 0 0 3px var(--gold)}
+input:user-invalid{border-color:var(--merah)}
+fieldset{border:0; margin:0; padding:0; min-width:0}
+.opsi-wrap{display:flex; flex-wrap:wrap; gap:10px}
+.opsi-wrap input{position:absolute; opacity:0; pointer-events:none}
+.opsi-wrap label{
+  display:flex; align-items:center; gap:9px; margin:0; padding:8px 13px 8px 9px; cursor:pointer;
+  font:.9rem/1.2 var(--label); background:var(--koran); border:1px solid var(--garis); border-radius:2px;
+  box-shadow:1px 2px 0 rgba(0,0,0,.25),0 1px 0 #fff8 inset; transition:background .2s,color .2s,transform .15s;
+}
+.opsi-wrap label::before{
+  content:""; flex:none; width:18px; height:18px; display:grid; place-items:center; font:700 .95rem/1 var(--isi);
+  border:2px solid var(--ink); background:#fff6; color:var(--gold);
+}
+.radio label::before{border-radius:50%}
+.opsi-wrap label:hover{transform:translateY(-1px)}
+.opsi-wrap input:checked+label{background:var(--ink); color:#f2e8cf}
+.opsi-wrap input:checked+label::before{content:"✓"; background:var(--ink); border-color:var(--gold)}
+.opsi-wrap input:focus-visible+label{outline:3px solid var(--gold); outline-offset:2px}
+button{
+  width:100%; margin-top:6px; padding:15px 18px; cursor:pointer; border:0; border-radius:2px;
+  font:700 1.2rem/1 var(--isi); color:#2a1d05;
+  background:linear-gradient(100deg,#b9852a,#f1cb6c,#d6a23c,#f1cb6c,#b9852a); background-size:300% 100%;
+  animation:kilau 7s linear infinite;
+  text-shadow:1px 1px 0 rgba(255,255,255,.5);
+  box-shadow:0 5px 0 #7a5614,0 12px 20px rgba(0,0,0,.3);
+  transition:transform .15s,box-shadow .15s;
+}
+@keyframes kilau{to{background-position:-300% 0}}
+button:hover{transform:translateY(2px); box-shadow:0 3px 0 #7a5614,0 8px 14px rgba(0,0,0,.3)}
+button:active{transform:translateY(5px); box-shadow:0 0 0 #7a5614}
+button:focus-visible{outline:3px solid var(--ink); outline-offset:3px}
+/* lajur samping */
+.samping{border-left:1px solid var(--garis); padding-left:26px}
+.foto{margin:0}
+.foto .kotak{position:relative; border:1px solid var(--teks); padding:5px; background:var(--koran-2); box-shadow:2px 3px 0 rgba(0,0,0,.25)}
+.foto svg{display:block; width:100%; height:auto; filter:sepia(.5) contrast(1.05)}
+.foto .kotak::after{
+  content:""; position:absolute; inset:5px; pointer-events:none; mix-blend-mode:multiply; opacity:.4;
+  background:radial-gradient(circle,rgba(0,0,0,.55) 0 .7px,transparent 1px) 0 0/4px 4px;
+}
+.foto figcaption{margin-top:8px; font:italic .88rem/1.4 var(--isi); color:#51472f}
+.samping h3{margin:22px 0 6px; font:700 1.05rem/1.2 var(--isi); border-top:3px double var(--teks); padding-top:12px}
+.samping p{margin:0; font-size:.95rem; text-align:justify; hyphens:auto}
+/* tombol kembali */
+.kembali{
+  position:fixed; z-index:20; top:calc(env(safe-area-inset-top,0px) + 14px); left:calc(env(safe-area-inset-left,0px) + 14px);
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px 9px 12px; text-decoration:none;
+  font:.95rem/1 var(--mesin); color:var(--ink); background:linear-gradient(var(--koran),var(--koran-2));
+  border:1px solid var(--garis); border-radius:2px;
+  text-shadow:1px 1px 0 rgba(255,255,255,.6);
+  box-shadow:0 1px 0 #fff8 inset,0 3px 0 var(--koran-3),0 5px 0 #a1977c,0 10px 18px rgba(0,0,0,.4);
+  transition:transform .15s,box-shadow .15s,background .2s,color .2s;
+}
+.kembali svg{width:18px;height:18px;flex:none;transition:transform .2s}
+.kembali:hover{background:var(--ink); color:#f2e8cf; text-shadow:none}
+.kembali:hover svg{transform:translateX(-3px)}
+.kembali:active{transform:translateY(3px); box-shadow:0 1px 0 #fff8 inset,0 0 0 var(--koran-3),0 3px 6px rgba(0,0,0,.4)}
+.kembali:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
+@media (max-width:840px){
+  .berita{grid-template-columns:1fr}
+  .samping{border-left:0; padding-left:0; border-top:1px solid var(--garis); padding-top:20px}
+}
+@media (max-width:520px){
+  body{padding:72px 8px 24px; font-size:16px}
+  .kembali{top:calc(env(safe-area-inset-top,0px) + 10px); left:calc(env(safe-area-inset-left,0px) + 10px); padding:8px 13px 8px 10px}
+  .koran{padding:18px 14px 22px}
+  .kolom{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  body,button,.tumpuk::before,.tumpuk::after,.koran{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="kembali" href="#" onclick="history.back();return false;" aria-label="Kembali ke halaman sebelumnya">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg>
+  Kembali
+</a>
+<div class="tumpuk">
+<main class="koran">
+  <header class="kepala">
+    <h1>Warta Mahasantri</h1>
+    <div class="baris"><span>Terbitan PeTIK</span><span>Lembar biodata</span><span>Harap isi dengan lengkap</span></div>
+  </header>
+
+  <div class="berita">
+    <section>
+      <h2>Form biodata mahasantri PeTIK</h2>
+      <p class="lead">Isi data diri Anda di bawah ini. Pastikan NIM dan surel sudah benar sebelum mengirim.</p>
+
+      <form action="#" method="post">
+        <div class="kolom">
+          <div class="penuh">
+            <label for="nama">Nama</label>
+            <input id="nama" name="nama" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="nim">NIM</label>
+            <input id="nim" name="nim" type="text" inputmode="numeric" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <fieldset class="penuh">
+            <legend>Jurusan</legend>
+            <div class="opsi-wrap radio">
+              <div><input type="radio" id="sd" name="jurusan" value="SD" required><label for="sd">Software Development</label></div>
+              <div><input type="radio" id="dm" name="jurusan" value="DM"><label for="dm">Digital Marketing</label></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="penuh">
+            <legend>Hobi</legend>
+            <div class="opsi-wrap">
+              <div><input type="checkbox" id="h0" name="hobi" value="mancing"><label for="h0">Mancing</label></div>
+              <div><input type="checkbox" id="h1" name="hobi" value="olahraga"><label for="h1">Olahraga</label></div>
+              <div><input type="checkbox" id="h2" name="hobi" value="membaca"><label for="h2">Membaca</label></div>
+              <div><input type="checkbox" id="h3" name="hobi" value="menonton"><label for="h3">Menonton</label></div>
+              <div><input type="checkbox" id="h4" name="hobi" value="dzikir"><label for="h4">Dzikir</label></div>
+            </div>
+          </fieldset>
+
+          <div class="penuh">
+            <label for="matkul">Mata Kuliah</label>
+            <select id="matkul" name="matkul">
+              <option value="wd">Web Design</option>
+              <option value="db">Database SQL</option>
+              <option value="php">Pemrograman PHP</option>
+              <option value="py">Pemrograman Python</option>
+            </select>
+          </div>
+          <div class="penuh">
+            <label for="alamat">Alamat</label>
+            <textarea id="alamat" name="alamat" autocomplete="street-address"></textarea>
+          </div>
+          <div class="penuh"><button type="submit">Kirim biodata</button></div>
+        </div>
+      </form>
+    </section>
+
+    <aside class="samping">
+      <figure class="foto">
+        <div class="kotak">
+          <svg viewBox="0 0 240 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi laptop dan buku di atas meja belajar">
+            <rect width="240" height="190" fill="#d9cfb2"/>
+            <circle cx="190" cy="48" r="26" fill="#efe2b8"/>
+            <g stroke="#3b3322" stroke-width="1.2" opacity=".5"><path d="M0 70h240M0 80h240M0 90h240"/></g>
+            <rect x="0" y="146" width="240" height="44" fill="#3b3322"/>
+            <path d="M0 146h240" stroke="#14110a" stroke-width="3"/>
+            <rect x="48" y="62" width="110" height="72" rx="4" fill="#1b2230" stroke="#14110a" stroke-width="3"/>
+            <rect x="55" y="69" width="96" height="58" fill="#27405f"/>
+            <text x="103" y="108" text-anchor="middle" font-family="Courier New,monospace" font-size="26" fill="#f1cb6c">&lt;/&gt;</text>
+            <path d="M36 134h134l8 12H28z" fill="#8c8068" stroke="#14110a" stroke-width="2"/>
+            <rect x="178" y="118" width="40" height="9" fill="#a3362b" stroke="#14110a" stroke-width="2"/>
+            <rect x="182" y="127" width="36" height="9" fill="#1d6764" stroke="#14110a" stroke-width="2"/>
+            <rect x="176" y="136" width="42" height="10" fill="#d6a23c" stroke="#14110a" stroke-width="2"/>
+            <path d="M198 118c-2-12 4-18 14-20" fill="none" stroke="#14110a" stroke-width="2"/>
+          </svg>
+        </div>
+        <figcaption>Ruang belajar mahasantri: laptop, buku, dan secangkir waktu untuk menulis kode.</figcaption>
+      </figure>
+      <h3>Catatan pengurus</h3>
+      <p>Data yang Anda isi dipakai untuk pendataan mahasantri. Periksa kembali sebelum menekan tombol kirim.</p>
+    </aside>
+  </div>
+</main>
+</div>
+</body>
+</html>
